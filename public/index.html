@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">  
+<head>    
+    <title>Cuarto desafio</title>    
+    <meta charset="UTF-8">
+    <meta name="title" content="Título de la WEB">
+    <meta name="description" content="Descripción de la WEB">    
+</head> 
+
+<body>
+    <p><strong>ver productos</strong></p>
+    <form method="GET" action="http://localhost:8080/productos/api/productos">
+        <input type="submit" value="send">
+    </form>
+    <p><strong>ver producto por id</strong></p>
+    <form method="GET" action="http://localhost:8080/productos/api/productos/1">
+        <input type="submit" value="send">
+    </form>
+    <p><strong>Agregar producto</strong></p>
+    <form method="POST" action="http://localhost:8080/productos/api/productos">
+        <input name="producto" type="text">
+        <input name="precio" type="text">
+        <input type="submit" value="send">
+    </form>
+    <p><strong>Actualizar producto</strong></p>
+    <form method="PUT" action="http://localhost:8080/productos/api/productos/1">
+        <input name="producto" type="text">
+        <input name="precio" type="text">
+        <input type="submit" value="send">
+    </form>
+    <p><strong>Borrar producto</strong></p>
+    <form method="DELETE" action="http://localhost:8080/productos/api/productos/1">
+        <input type="submit" value="send">
+    </form>
+ </body>
