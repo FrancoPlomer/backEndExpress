@@ -30,12 +30,7 @@ class contenedorProductos {
         productos.get('/api/productos',  ( req,res )=>{
             if (this.productos)
             {
-                res.send(`
-                <h1>Listado de productos</h1>
-                <ul>${this.productos.map (producto => 
-                    {
-                        return (`<li> ${producto.title}</li>`)         
-                    })}</ul>`)
+                res.json(this.productos)
             }
             else{
                 res.send({error: "producto no encontrado"});
@@ -49,14 +44,10 @@ class contenedorProductos {
 
                 if (producto.ID === parseInt(req.params.id))
                 {
-                    res.send(`
-                        <h1>Producto encontrado</h1>
-                        <ul>
-                            <li>
-                                ${producto.title}
-                            </li>
-                        </ul>
-                    `)
+                    res.json({
+                        nombreProducto: producto.title
+                    })
+
                 }
                 else{
                     res.send({error: "producto no encontrado"});
@@ -75,7 +66,10 @@ class contenedorProductos {
                 price: precio,
                 ID: idSumador,
             })
-            res.send(`<h1>Se agrego el producto con exito, su id: ${idSumador}</h1>`)
+            res.json({
+                idProducto: idSumador
+            })
+
         })
     }
     updateForId()
@@ -93,7 +87,10 @@ class contenedorProductos {
                         title: producto,
                         price: precio,
                     }
-                    res.send(`<h1>Se actualizo el producto con exito</h1><ul><li>${this.productos[i].title}</li><li>${this.productos[i].price}</li></ul>`)
+                    res.json({
+                        nombreProducto: this.productos[i].title,
+                        precioProdcuto: this.productos[i].price
+                    })
                 }
             }
         })
@@ -108,12 +105,11 @@ class contenedorProductos {
                     this.productos.splice(index, 1)
                 }                  
             }
-            res.send(`
-            <h1>Eliminado con exito, listado de productos actualizado</h1>
-            <ul>${this.productos.map (producto => 
+            this.productos.map (producto => 
                 {
-                    return (`<li> ${producto.title}</li>`)         
-                })}</ul>`)
+                    res.json(this.productos)
+
+                })
         })
     }
 }
